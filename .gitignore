@@ -1,4 +1,6 @@
 *.ps1
 
+.cache
+
 __pycache__/
 downloaded_covers/
