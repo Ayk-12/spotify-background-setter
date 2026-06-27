@@ -39,10 +39,15 @@ def get_highest_quality_index(data: list) -> int:
 
 
 def get_playing(sp_app: spotipy.Spotify) -> None:
-	song: dict = sp_app.currently_playing()
+	try:
+		song: dict = sp_app.currently_playing()
+	except:
+		toast("Something went wrong while connecting to Spotify...")
+		return
+
 	# pprint(song)
 	if (song is None):
-		toast("Trying again in a bit...")
+		toast("Currently not using Spotify.")
 		# TODO: try again if None maybe
 		return
 	type_of_playback = song.get("context").get("type")

@@ -16,5 +16,5 @@ def get_cover(url: str, artist: str, album: str, size: int, ext: str = ".png") -
 		os.makedirs(path)
 		urllib.request.urlretrieve(url, filename=full_path)
 
-	run_script(full_path)
+	run_script(wallpaper_path=full_path, artist=artist, album=album)
 	return
