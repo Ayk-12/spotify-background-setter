@@ -2,7 +2,7 @@ import urllib.request
 import os
 
 from PIL import Image
-from change_background import run_script
+from background_changer import run_script
 
 
 def get_cover(url: str, artist: str, album: str, size: int, ext: str = ".png") -> None:
@@ -12,7 +12,7 @@ def get_cover(url: str, artist: str, album: str, size: int, ext: str = ".png") -
 	path = os.path.join(os.path.dirname(__file__), "downloaded_covers", artist, album)
 	full_path = os.path.join(path, file_name)
 
-	if not os.path.exists(path): # download and store cover if it does not exist
+	if (not os.path.exists(path)): # download and store cover if it does not exist
 		os.makedirs(path)
 		urllib.request.urlretrieve(url, filename=full_path)
 
