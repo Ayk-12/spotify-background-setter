@@ -1,6 +1,7 @@
 import spotipy
 
 from spotipy.oauth2 import SpotifyOAuth
+from win11toast import toast
 from image_handler import get_cover
 
 
@@ -24,19 +25,20 @@ def get_playing(sp_app: spotipy.Spotify) -> None:
 	song: dict = sp_app.currently_playing()
 	# pprint(song)
 	if (song is None):
-		print(None)
+		toast("Trying again in a bit...")
 		# TODO: try again if None maybe
 		return
 	type_of_playback = song.get("context").get("type")
 
 	if (type_of_playback == "album"):
-		print("PLAYING AN ALBUM")
 		all_album_covers = song.get("item").get("album").get("images")
 		high_quality_index = get_highest_quality_index(all_album_covers)
 
 		cover_url = all_album_covers[high_quality_index].get("url")
 		artist_name = (song.get("item").get("album").get("artists")[0]).get("name")
 		album_name = song.get("item").get("album").get("name")
+
+		toast(f"Playing an album: {artist_name} - {album_name}")
 
 		get_cover(url=cover_url, artist=artist_name, album=album_name, size=all_album_covers[high_quality_index].get("height"))
 
