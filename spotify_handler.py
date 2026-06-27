@@ -1,13 +1,30 @@
 import spotipy
+import os
 
 from spotipy.oauth2 import SpotifyOAuth
+from spotipy.cache_handler import CacheFileHandler
 from win11toast import toast
 from image_handler import get_cover
 
 
 def start_app() -> spotipy.Spotify:
+	toast("Spotify background changer running...")
+
 	scope = "user-read-currently-playing"
-	sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
+	try:
+		cache_path = os.path.join(os.path.dirname(__file__), ".cache")
+		cache_handler = CacheFileHandler(cache_path=cache_path)
+
+		auth_manager = SpotifyOAuth(
+			scope=scope,
+			cache_handler=cache_handler,
+			open_browser=False
+		)
+
+		sp = spotipy.Spotify(auth_manager=auth_manager)
+	except:
+		sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
+
 	return (sp)
 
 
@@ -29,7 +46,7 @@ def get_playing(sp_app: spotipy.Spotify) -> None:
 		# TODO: try again if None maybe
 		return
 	type_of_playback = song.get("context").get("type")
-
+	# print(type_of_playback)
 	if (type_of_playback == "album"):
 		all_album_covers = song.get("item").get("album").get("images")
 		high_quality_index = get_highest_quality_index(all_album_covers)
