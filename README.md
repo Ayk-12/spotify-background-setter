@@ -6,7 +6,7 @@ Note that playing from a playlist, or looking a song up and playing it does NOT 
 
 Downloaded album covers can be found at the root of your repo under `\downloaded_covers\artist\album\cover.png` after at least changing your desktop background once. DO NOT delete the album cover image after it has been downloaded; delete the directory of that album entirely if you wish to delete its album cover.
 
-<img src="https://github.com/Ayk-12/spotify-background-setter/blob/main/Screenshots/underscores%20-%20U%20with%20a%20blue%20background.jpg" width="50%" height="50%"/>
+<img src="https://github.com/Ayk-12/spotify-background-setter/blob/main/Screenshots/underscores%20-%20U%20with%20a%20blue%20background.jpg"/>
 
 A bit of setting up is needed for the program to work properly. Here are the steps below.
 
