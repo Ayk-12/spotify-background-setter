@@ -4,7 +4,7 @@ import os
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import CacheFileHandler
 from win11toast import toast
-from image_handler import get_full_wallpaper_path, get_wallpaper_path, get_album_image_file_name, get_cover
+from image_handler import get_full_background_path, get_background_path, get_album_image_file_name, get_cover
 
 
 def start_app() -> spotipy.Spotify:
@@ -48,7 +48,7 @@ def is_context_album(song_info: dict) -> bool:
 
 def	is_new_background(artist: str, album: str, sep: str = " - ") -> bool:
 	rt_change = None
-	curr_artitst_album_path = os.path.join(os.path.dirname(__file__), "current_wallpaper")
+	curr_artitst_album_path = os.path.join(os.path.dirname(__file__), "current_background")
 	new_artist_album = get_artist_album(artist=artist, album=album)
 
 	try:
@@ -103,7 +103,7 @@ def get_info_recently_played(sp_app: spotipy.Spotify) -> None:
 	if (is_new_background(artist=artist_name, album=album_name)):
 		get_cover(url=cover_url, artist=artist_name, album=album_name, size=dimensions)
 	else:
-		toast(f"Desktop background already set to: {get_artist_album(artist=artist_name, album=album_name)}.", image=get_full_wallpaper_path(wallpaper_path=get_wallpaper_path(artist=artist_name, album=album_name), filename=get_album_image_file_name(artist=artist_name, album=album_name, size=dimensions)))
+		toast(f"Desktop background already set to: {get_artist_album(artist=artist_name, album=album_name)}.", image=get_full_background_path(background_path=get_background_path(artist=artist_name, album=album_name), filename=get_album_image_file_name(artist=artist_name, album=album_name, size=dimensions)))
 	return		
 
 
