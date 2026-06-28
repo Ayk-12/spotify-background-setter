@@ -1,7 +1,7 @@
 *.ps1
 
 .cache
-current_wallpaper
+current_background
 
 __pycache__/
 downloaded_covers/
